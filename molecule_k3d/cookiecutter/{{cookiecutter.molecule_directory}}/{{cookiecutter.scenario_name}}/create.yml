@@ -9,15 +9,6 @@
     molecule_labels:
       owner: molecule
   tasks:
-    - name: Determine the CMD directives
-      set_fact:
-        command_directives_dict: >-
-          {{ command_directives_dict | default({}) |
-             combine({ item.name: item.command | default('bash -c "while true; do sleep 10000; done"') })
-          }}
-      with_items: "{{ molecule_yml.platforms }}"
-      when: item.override_command | default(true)
-
     - name: Create molecule instance(s)
       command: k3d cluster create {{ item.name }}
       register: server
