@@ -1,0 +1,16 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Cleanup
+
+on: 
+  pull_request:
+    types: [closed]
+
+jobs:
+  delete-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: delete branch
+        uses: SvanBoxel/delete-merged-branch@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

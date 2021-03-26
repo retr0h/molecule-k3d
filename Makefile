@@ -41,6 +41,5 @@ build-dist:
 .PHONY: dist-publish
 dist-publish:
 	poetry publish --build \
-		-r maestro \
-		-u gitlab-ci-token \
-		-p $(CI_JOB_TOKEN) || true
+		-u $(PYPI_USERNAME) \
+		-p $(PYPI_PASSWORD)
