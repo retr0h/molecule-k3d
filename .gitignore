@@ -1,0 +1,7 @@
+*.egg-info/
+*.py[rcod]
+.cache/
+.coverage
+.venv/
+dist/
+htmlcov/

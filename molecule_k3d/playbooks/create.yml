@@ -1,0 +1,40 @@
+---
+- name: Create
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  no_log: "{{ molecule_no_log }}"
+  vars:
+    molecule_labels:
+      owner: molecule
+  tasks:
+    - name: Determine the CMD directives
+      set_fact:
+        command_directives_dict: >-
+          {{ command_directives_dict | default({}) |
+             combine({ item.name: item.command | default('bash -c "while true; do sleep 10000; done"') })
+          }}
+      with_items: "{{ molecule_yml.platforms }}"
+      when: item.override_command | default(true)
+
+    - name: Create molecule instance(s)
+      command: k3d cluster create {{ item.name }}
+      register: server
+      with_items: "{{ molecule_yml.platforms }}"
+      loop_control:
+        label: "{{ item.name }}"
+      no_log: false
+      async: 7200
+      poll: 0
+
+    - name: Wait for instance(s) creation to complete
+      async_status:
+        jid: "{{ item.ansible_job_id }}"
+      register: k3d_jobs
+      until: k3d_jobs.finished
+      retries: 300
+      with_items: "{{ server.results }}"
+
+    - name: Merge cluster''s kubeconfig
+      command: k3d kubeconfig merge {{ item.name }}
+      with_items: "{{ molecule_yml.platforms }}"

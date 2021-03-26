@@ -1,0 +1,14 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: k3d
+platforms:
+  - name: instance
+provisioner:
+  name: ansible
+verifier:
+  name: ansible
+lint: |
+  set -e
+  yamllint .

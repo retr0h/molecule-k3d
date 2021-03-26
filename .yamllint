@@ -1,0 +1,9 @@
+---
+extends: default
+
+ignore: |
+  */cookiecutter/
+  .venv/
+
+rules:
+  line-length: disable

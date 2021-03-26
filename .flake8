@@ -1,0 +1,19 @@
+# NOTE(john.dewey): Flake8 does not support pyproject.toml.
+# Maybe we should standardize on another linter?
+
+[flake8]
+max-line-length = 79
+format = pylint
+exclude =
+    .venv/,
+    build/,
+    dist/,
+    doc/,
+#- [H106] Don't put vim configuration in source files.
+#- [H203] Use assertIs(Not)None to check for None.
+#- [H904] Delay string interpolations at logging calls.
+enable-extensions = H106,H203,H904
+# It's not a bug that we aren't using all of hacking, ignore:
+#- [H306:] imports not in alphabetical order
+#- [W503] line break before binary operator
+ignore = H306, W503
