@@ -5,6 +5,10 @@
 
 molecule-k3d - Molecule K3D Driver allows Molecule users to test Ansible code using K3D.
 
+## Installing
+
+    $ pip install molecule-k3d
+
 ## Testing
 
 To execute unit tests.

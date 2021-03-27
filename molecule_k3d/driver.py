@@ -49,7 +49,7 @@ class K3d(Driver):
 
     .. code-block:: bash
 
-        $ python3 -m pip install molecule[k3d]
+        $ python3 -m pip install molecule-k3d
 
     .. _`K3D`: https://k3d.io/
     """  # noqa
