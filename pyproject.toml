@@ -59,6 +59,7 @@ pytest = "^6.0.1"
 pytest-clarity = "*"
 pytest-cov = "*"
 pytest-helpers-namespace = "*"
+yamllint = "*"
 
 [build-system]
 requires = [
