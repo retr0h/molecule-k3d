@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "molecule-k3d"
 version = "0.1.0"
-description = "molecule-k3d - Molecule K3D Driver allows Molecule users to test Ansible code using K3D."
+description = "molecule-k3d - Molecule k3d Driver allows Molecule users to test Ansible code using k3d."
 authors = [
     "John Dewey <john@dewey.ws>",
 ]

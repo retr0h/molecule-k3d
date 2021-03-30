@@ -18,7 +18,7 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 # DEALINGS IN THE SOFTWARE.
 
-"""K3D Driver Module."""
+"""K3d Driver Module."""
 
 from __future__ import absolute_import
 
@@ -33,9 +33,9 @@ log = logger.get_logger(__name__)
 
 class K3d(Driver):
     """
-    K3D Driver Class.
+    K3d Driver Class.
 
-    The class responsible for managing `K3D`_.
+    The class responsible for managing `k3d`_.
 
     Molecule leverages Ansible's `command`_ module, by mapping
     variables from ``molecule.yml`` into ``create.yml`` and ``destroy.yml``.
@@ -47,15 +47,11 @@ class K3d(Driver):
         platforms:
           - name: molecule-cluster
 
-    .. code-block:: bash
-
-        $ python3 -m pip install molecule-k3d
-
-    .. _`K3D`: https://k3d.io/
+    .. _`k3d`: https://k3d.io/
     """  # noqa
 
     def __init__(self, config=None):
-        """Construct K3d."""
+        """Construct k3d."""
         super(K3d, self).__init__(config)
         self._name = "k3d"
 
