@@ -18,6 +18,17 @@ molecule-k3d - Molecule k3d Driver allows Molecule users to test Ansible code us
     $ molecule init scenario -d k3d
     $ molecule test
 
+Be sure to set the following env vars, where `$instance`, is the name
+of the platform specified in `molecule.yml`.
+
+    platforms:
+      - name: instance
+    provisioner:
+      name: ansible
+      env:
+        K8S_AUTH_KUBECONFIG: ~/.k3d/kubeconfig-$instance.yaml
+        KUBECONFIG: ~/.k3d/kubeconfig-$instance.yaml
+
 ## Testing
 
 To execute unit tests.

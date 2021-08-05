@@ -27,7 +27,12 @@
       retries: 300
       with_items: "{{ server.results }}"
 
-    - name: Merge cluster''s kubeconfig
+    - name: Write cluster''s kubeconfig
       command: k3d kubeconfig merge {{ item.name }}
+      with_items: "{{ molecule_yml.platforms }}"
+
+    - name: You can now use the cluster like this
+      debug:
+        msg: export KUBECONFIG=$(k3d kubeconfig write {{ item.name }})
       with_items: "{{ molecule_yml.platforms }}"
 {%- endraw %}
