@@ -10,7 +10,7 @@
       owner: molecule
   tasks:
     - name: Create molecule instance(s)
-      command: k3d cluster create {{ item.name }}
+      command: k3d cluster create {{ item.name }} --kubeconfig-update-default=false
       register: server
       with_items: "{{ molecule_yml.platforms }}"
       loop_control:
@@ -28,7 +28,7 @@
       with_items: "{{ server.results }}"
 
     - name: Write cluster''s kubeconfig
-      command: k3d kubeconfig merge {{ item.name }}
+      command: k3d kubeconfig write {{ item.name }}
       with_items: "{{ molecule_yml.platforms }}"
 
     - name: You can now use the cluster like this
